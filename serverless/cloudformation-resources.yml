@@ -1,0 +1,27 @@
+###############################################################################
+# CLOUDFORMATION RESOURCES
+###############################################################################
+
+#
+# Documentation Reference:
+# https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/template-reference.html
+#
+Resources:
+    DemoBucketUpload:
+        Type: AWS::S3::Bucket
+        Properties:
+            BucketName: test-wej5ar
+
+    MyDynamoDbTable:
+        Type: AWS::DynamoDB::Table
+        Properties:
+            TableName: player-points
+            AttributeDefinitions:
+                - AttributeName: ID
+                  AttributeType: S
+            KeySchema:
+                - AttributeName: ID
+                  KeyType: HASH
+            BillingMode: PAY_PER_REQUEST
+
+###############################################################################

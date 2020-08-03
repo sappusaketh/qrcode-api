@@ -1,0 +1,37 @@
+###############################################################################
+# ENVIRONMENT SPECIFIC CONFIGURATIONS
+###############################################################################
+
+# Serverless Framework Configurations
+sls:
+  deploymentBucketName: ph-devops-serverless-${self:provider.region}
+  region: us-west-2
+  accountid: 779038906119
+  ph_env: dev
+
+  # KMS For SSM
+  # Managed by terraform
+  kms_for_ssm_arn: arn:aws:kms:${self:provider.region}:${self:custom.accountid}:key/2c60c4f6-86e1-408a-a112-6f86033cdd01
+
+  # VPC Configs
+  vpcID: vpc-d7c0e4b3
+  vpc:
+    securityGroupIds:
+    - Ref: lambdaSecurityGroup
+    subnetIds:
+    - subnet-d2f3b9b6
+    - subnet-5391f325
+    - subnet-80fc52d8
+
+# Application Configurations
+app:
+  LOG_LEVEL: debug
+  PH_TLD: biz
+  NODE_ENV: development
+  EXTERNAL_REQUEST_TIMEOUT: 30000
+  
+# Jenkins
+jenkins:
+  job_iam_role: arn:aws:iam::779038906119:role/jenkins-deployer-serverless
+
+###############################################################################

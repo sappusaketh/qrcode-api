@@ -1,0 +1,30 @@
+##############################################################################
+# LAMBDA MONITORING AND ALERTING
+##############################################################################
+
+# Define which alarms to create
+alarms:
+- functionThrottles
+- functionErrors
+- functionDuration
+
+# Define alert notifications
+topics:
+  ok:
+    topic: arn:aws:sns:${self:provider.region}:${self:custom.accountid}:ph-${self:custom.ph_env}-slack-aws-alerts
+  alarm:
+    topic: arn:aws:sns:${self:provider.region}:${self:custom.accountid}:ph-${self:custom.ph_env}-slack-aws-alerts
+
+# Alert definitions and thresholds
+definitions:
+  functionErrors:
+    threshold: 1
+    treatMissingData: ignore
+  functionDuration:
+    threshold: ${self:provider.timeout}000
+    evaluationPeriods: 1
+    treatMissingData: ignore
+  functionThrottles:
+    treatMissingData: ignore
+
+##############################################################################

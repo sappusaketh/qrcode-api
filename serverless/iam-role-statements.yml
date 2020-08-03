@@ -1,0 +1,11 @@
+##############################################################################
+# ADDITIONAL IAM PERMISSIONS
+##############################################################################
+
+# Reference:
+# https://serverless.com/framework/docs/providers/aws/guide/iam/
+-  Effect: "Allow"
+   Action:
+     - "cloudformation:DescribeStackResource"
+   Resource: "*"
+##############################################################################
